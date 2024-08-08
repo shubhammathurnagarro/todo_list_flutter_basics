@@ -23,9 +23,7 @@ class _CheckInternetWidgetState extends State<CheckInternetWidget> {
         } else if (isConnected.data == true) {
           return widget.mainWidget;
         } else {
-          return ErrorMessageWidget(onRetry: () {
-            setState(() {});
-          });
+          return ErrorMessageWidget(onRetry: () => setState(() {}));
         }
       },
     );

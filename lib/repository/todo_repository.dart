@@ -10,9 +10,8 @@ class TodoRepository {
     String endpoint = '/todos';
     var response = await http.get(Uri.parse(_baseUrl + endpoint));
     if (response.statusCode == 200) {
-      return Utils.parseListResponse(response, (element) {
-        return Todo.fromJson(element);
-      });
+      return Utils.parseListResponse(
+          response, (element) => Todo.fromJson(element));
     } else {
       throw Exception('Some error occurred!');
     }

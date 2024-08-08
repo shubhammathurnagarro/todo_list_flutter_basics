@@ -23,13 +23,12 @@ class _TodoListState extends State<TodoList> {
       itemCount: widget.itemList.length + 1,
       itemBuilder: (ctx, index) {
         if (index == 0) {
-          return ListViewHeader(onTodoAdd: (text) {
-            setState(() {
-              widget.itemList.insert(
-                  0, Todo(99, widget.itemList.last.id + 1, text, false));
-              Utils.showSnackbar(context, 'Todo added successfully!');
-            });
-          });
+          return ListViewHeader(
+              onTodoAdd: (text) => setState(() {
+                    widget.itemList.insert(
+                        0, Todo(99, widget.itemList.last.id + 1, text, false));
+                    Utils.showSnackbar(context, 'Todo added successfully!');
+                  }));
         } else {
           var item = widget.itemList[index - 1];
 
@@ -38,11 +37,7 @@ class _TodoListState extends State<TodoList> {
               trailing: item.completed
                   ? Icon(Icons.done_all, color: Theme.of(context).primaryColor)
                   : GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          _editModeIndex = index;
-                        });
-                      },
+                      onTap: () => setState(() => _editModeIndex = index),
                       child: const Icon(Icons.edit),
                     ),
               title: Text(item.title),
@@ -51,13 +46,11 @@ class _TodoListState extends State<TodoList> {
           } else {
             return AddTodoWidget(
                 defaultText: item.title,
-                onSubmit: (text) {
-                  setState(() {
-                    _editModeIndex = -1;
-                    item.title = text;
-                    Utils.showSnackbar(context, 'Todo edited successfully!');
-                  });
-                });
+                onSubmit: (text) => setState(() {
+                      _editModeIndex = -1;
+                      item.title = text;
+                      Utils.showSnackbar(context, 'Todo edited successfully!');
+                    }));
           }
         }
       },

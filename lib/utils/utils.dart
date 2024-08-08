@@ -13,9 +13,9 @@ class Utils {
 
   static List<T> parseListResponse<T>(
       Response response, T Function(dynamic) converter) {
-    return (jsonDecode(response.body) as List).map((element) {
-      return converter(element);
-    }).toList();
+    return (jsonDecode(response.body) as List)
+        .map((element) => converter(element))
+        .toList();
   }
 
   static void showSnackbar(BuildContext context, String text) {

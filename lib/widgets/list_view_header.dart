@@ -17,19 +17,14 @@ class _ListViewHeaderState extends State<ListViewHeader> {
   @override
   Widget build(BuildContext context) {
     if (_isInAddMode) {
-      return AddTodoWidget(onSubmit: (text) {
-        setState(() {
-          widget.onTodoAdd(text);
-          _isInAddMode = false;
-        });
-      });
+      return AddTodoWidget(
+          onSubmit: (text) => setState(() {
+                widget.onTodoAdd(text);
+                _isInAddMode = false;
+              }));
     } else {
       return ListTile(
-        onTap: () {
-          setState(() {
-            _isInAddMode = true;
-          });
-        },
+        onTap: () => setState(() => _isInAddMode = true),
         title: const Center(
           child: Text('Add Todo'),
         ),

@@ -30,14 +30,10 @@ class _AddTodoWidgetState extends State<AddTodoWidget> {
         autofocus: true,
         textCapitalization: TextCapitalization.sentences,
         textInputAction: TextInputAction.done,
-        onSubmitted: (text) {
-          _onTextSubmit();
-        },
+        onSubmitted: (text) => _onTextSubmit(),
         onChanged: (text) {
           if (text.isNotEmpty) {
-            setState(() {
-              _isValidText = text.isNotEmpty;
-            });
+            setState(() => _isValidText = text.isNotEmpty);
           }
         },
         decoration: InputDecoration(
@@ -47,9 +43,7 @@ class _AddTodoWidgetState extends State<AddTodoWidget> {
         ),
       ),
       trailing: ElevatedButton(
-        onPressed: () {
-          _onTextSubmit();
-        },
+        onPressed: () => _onTextSubmit(),
         child: const Text('Submit'),
       ),
     );
@@ -57,9 +51,7 @@ class _AddTodoWidgetState extends State<AddTodoWidget> {
 
   void _onTextSubmit() {
     if (_textEditingController.text.trim().isEmpty) {
-      setState(() {
-        _isValidText = false;
-      });
+      setState(() => _isValidText = false);
     } else {
       widget.onSubmit(_textEditingController.text);
       _textEditingController.clear();
